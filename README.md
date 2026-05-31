@@ -40,6 +40,8 @@ A lightweight RESTful API built with **FastAPI** to manage patient records store
 
 ```mermaid
 flowchart LR
+<img width="2632" height="2194" alt="fastapi_patientinfo" src="https://github.com/user-attachments/assets/c877cc19-cb52-4f90-964d-f9f82b7dca75" />
+
     Client[Client / Test Script] -->|HTTP Requests| API[FastAPI Server\nmain.py]
     API -->|Read/Write JSON| File[patients.json]
     
