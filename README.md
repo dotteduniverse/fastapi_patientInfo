@@ -40,6 +40,7 @@ A lightweight RESTful API built with **FastAPI** to manage patient records store
 
 ```mermaid
 
+<img width="802" height="687" alt="image" src="fastapi_patientinfo.png" />
 
     Client[Client / Test Script] -->|HTTP Requests| API[FastAPI Server\nmain.py]
     API -->|Read/Write JSON| File[patients.json]
