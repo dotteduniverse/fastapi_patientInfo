@@ -39,6 +39,7 @@ A lightweight RESTful API built with **FastAPI** to manage patient records store
 ## 🏗️ Architecture Diagram
 
 ```mermaid
+<img width="802" height="687" alt="image" src="https://github.com/user-attachments/assets/b5bc75f1-a962-4aa0-b8e9-c691db10ed16" />
 
 
     Client[Client / Test Script] -->|HTTP Requests| API[FastAPI Server\nmain.py]
