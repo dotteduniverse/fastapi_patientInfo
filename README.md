@@ -38,24 +38,57 @@ A lightweight RESTful API built with **FastAPI** to manage patient records store
 
 ## 🏗️ Architecture Diagram
 
-```mermaid
+┌─────────────┐      HTTP       ┌─────────────┐     Read/Write     ┌──────────────┐
+│   Client    │ ───────────────▶ │  FastAPI    │ ─────────────────▶ │  patients.   │
+│ (Browser/   │ ◀─────────────── │   Server    │ ◀───────────────── │    json      │
+│  Test Script)│      JSON       │  (main.py)  │      JSON          │  (File)      │
+└─────────────┘                  └─────────────┘                    └──────────────┘
+Alternatively, a more detailed view:
 
-<img width="802" height="687" alt="image" src="fastapi_patientinfo.png" />
 
-    Client[Client / Test Script] -->|HTTP Requests| API[FastAPI Server\nmain.py]
-    API -->|Read/Write JSON| File[patients.json]
-    
-    subgraph API Operations
-        direction TB
-        GET[GET /patients]
-        POST[POST /patients]
-        PUT[PUT /patients/{id}]
-        DELETE[DELETE /patients/{id}]
-    end
-    
-    Client --> API
-    API --> File
-    Sequence Diagram – Creating a Patient
+┌─────────────────────────────────────────────────────────────┐
+│                         CLIENT SIDE                         │
+│  • Test script (test_patients.py)                           │
+│  • cURL / Postman                                           │
+│  • Web browser (Swagger UI at /docs)                        │
+└─────────────────────────────┬───────────────────────────────┘
+                              │ HTTP (GET, POST, PUT, DELETE)
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│                      FASTAPI APPLICATION                     │
+│  ┌─────────────────────────────────────────────────────┐    │
+│  │ Endpoints:                                           │    │
+│  │  • GET    /patients                                  │    │
+│  │  • GET    /patients/{id}                            │    │
+│  │  • POST   /patients                                  │    │
+│  │  • PUT    /patients/{id}                            │    │
+│  │  • DELETE /patients/{id}                            │    │
+│  └─────────────────────────────────────────────────────┘    │
+│  ┌─────────────────────────────────────────────────────┐    │
+│  │ Business Logic & Validation (Pydantic models)       │    │
+│  └─────────────────────────────────────────────────────┘    │
+│  ┌─────────────────────────────────────────────────────┐    │
+│  │ JSON File Helpers (read_data / write_data)          │    │
+│  └─────────────────────────────────────────────────────┘    │
+└─────────────────────────────┬───────────────────────────────┘
+                              │ file I/O
+                              ▼
+                    ┌─────────────────┐
+                    │  patients.json  │
+                    │  (dictionary of  │
+                    │   patient records)│
+                    └─────────────────┘
+And a data flow diagram (simple steps):
+
+
+1. Client sends request ──▶ 2. FastAPI validates input
+                                    │
+                                    ▼
+3. FastAPI reads patients.json ──▶ 4. Performs operation (CRUD)
+                                    │
+                                    ▼
+5. Writes back to patients.json ──▶ 6. Returns JSON response to client
+
 
 📁 Project Structure
 text
@@ -76,32 +109,32 @@ pip package manager
 Installation
 Clone the repository
 
-bash
+
 git clone https://github.com/dotteduniverse/fastapi_patientInfo.git
 cd fastapi_patientInfo
 Create and activate a virtual environment (recommended)
 
-bash
+
 python -m venv venv
 source venv/bin/activate   # On Windows: venv\Scripts\activate
 Install dependencies
 
-bash
+
 pip install fastapi uvicorn requests
 Or create a requirements.txt file with:
 
-text
+
 fastapi>=0.115.0
 uvicorn>=0.30.0
 requests>=2.31.0
 then run:
 
-bash
+
 pip install -r requirements.txt
 Running the Server
 Start the development server with auto‑reload:
 
-bash
+
 uvicorn main:app --reload --host 0.0.0.0 --port 8000
 Now visit:
 
@@ -119,7 +152,7 @@ Returns a list of all patients. Supports query parameters for filtering (see bel
 
 Response 200 OK
 
-json
+
 [
   {
     "id": "P001",
