@@ -38,9 +38,9 @@ A lightweight RESTful API built with **FastAPI** to manage patient records store
 
 ## 🏗️ Architecture Diagram
 
-┌─────────────┐      HTTP       ┌─────────────┐     Read/Write     ┌──────────────┐
-│   Client    │ ───────────────▶ │  FastAPI    │ ─────────────────▶ │  patients.   │
-│ (Browser/   │ ◀─────────────── │   Server    │ ◀───────────────── │    json      │
+┌─────────────┐      HTTP       ┌─────────────┐     Read/Write     ┌───────────────┐
+│   Client    │ ───────────────▶ │  FastAPI    │ ─────────────────▶ │  patients.   
+│ (Browser/   │ ◀─────────────── │   Server    │ ◀───────────────── │    json     │
 │  Test Script)│      JSON       │  (main.py)  │      JSON          │  (File)      │
 └─────────────┘                  └─────────────┘                    └──────────────┘
 Alternatively, a more detailed view:
