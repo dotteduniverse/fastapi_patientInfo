@@ -39,8 +39,7 @@ A lightweight RESTful API built with **FastAPI** to manage patient records store
 ## 🏗️ Architecture Diagram
 
 ```mermaid
-flowchart LR
-<img width="2632" height="2194" alt="fastapi_patientinfo" src="https://github.com/user-attachments/assets/c877cc19-cb52-4f90-964d-f9f82b7dca75" />
+
 
     Client[Client / Test Script] -->|HTTP Requests| API[FastAPI Server\nmain.py]
     API -->|Read/Write JSON| File[patients.json]
@@ -65,6 +64,8 @@ text
 ├── test_patients.py       # Integration test script
 ├── requirements.txt       # Dependencies
 └── README.md              # This file
+
+
 🚀 Getting Started
 Prerequisites
 Python 3.8 or higher
@@ -75,8 +76,8 @@ Installation
 Clone the repository
 
 bash
-git clone https://github.com/yourusername/patient-management-api.git
-cd patient-management-api
+git clone https://github.com/dotteduniverse/fastapi_patientInfo.git
+cd fastapi_patientInfo
 Create and activate a virtual environment (recommended)
 
 bash
@@ -253,17 +254,4 @@ Write unit tests using pytest and httpx.AsyncClient
 Dockerize the application
 
 Made with ❤️ using FastAPI
-For issues or contributions, please open an issue on GitHub.
 
-text
-
----
-
-## Notes for you:
-
-- Replace `https://github.com/yourusername/patient-management-api.git` with your actual repository URL.
-- The Mermaid diagrams will render automatically on GitHub, GitLab, and any Markdown viewer that supports Mermaid.
-- You can also add a `.gitignore` file containing `patients.json`, `__pycache__/`, `venv/`, etc.
-- If you prefer no diagrams, simply delete the Mermaid code blocks.
-
-This README is ready to be committed to your Git repository!
