@@ -289,3 +289,4 @@ Dockerize the application
 
 Made with ❤️ using FastAPI
 
+.
